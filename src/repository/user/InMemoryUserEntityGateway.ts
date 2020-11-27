@@ -1,0 +1,48 @@
+import { Injectable } from '@nestjs/common';
+import NotFoundError from '../../../dist/core/common/error/types/NotFoundError';
+import User from '../../../dist/core/common/user/User';
+import UserEntityGateway from '../../../dist/core/common/user/UserEntityGateway';
+import { NullUser } from '../../core/common/user/User';
+
+@Injectable()
+export default class InMemoryUserEntityGateway implements UserEntityGateway {
+  users: Map<string, User>;
+
+  constructor() {
+    this.users = new Map<string, User>();
+  }
+
+  async create(user: User) {
+    this.users.set(user.username, user);
+    console.log('Created User', user);
+    return user;
+  }
+
+  async get(username: string) {
+    return await Promise.resolve(this.users.get(username) || NullUser);
+  }
+
+  async delete(username: string) {
+    const user = await Promise.resolve(this.users.get(username) || NullUser);
+    if (user === NullUser) {
+      throw new NotFoundError('user not found');
+    } else {
+      console.log('Deleted User', user);
+      this.users.delete(username);
+      return user;
+    }
+  }
+
+  async update(user: User) {
+    const savedUser = await Promise.resolve(
+      this.users.get(user.username) || NullUser,
+    );
+    if (savedUser === NullUser) {
+      throw new NotFoundError('user not found');
+    } else {
+      this.users.set(user.username, user);
+      console.log('Updated User', user);
+      return user;
+    }
+  }
+}
