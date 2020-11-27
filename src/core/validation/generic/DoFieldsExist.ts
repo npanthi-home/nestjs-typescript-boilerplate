@@ -6,7 +6,8 @@ export interface FieldsExistRequest {
   fields: string[];
 }
 
-export default class DoFieldsExist implements Validation<any, FieldsExistRequest> {
+export default class DoFieldsExist
+  implements Validation<any, FieldsExistRequest> {
   validate(request: FieldsExistRequest) {
     request.fields.forEach((field) => {
       if (!request.entity[field]) {

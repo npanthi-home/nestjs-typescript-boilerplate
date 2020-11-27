@@ -1,12 +1,12 @@
-import AbstractValidationFactory from "./AbstractValidationFactory";
-import { Validation } from "./Validation";
-import ValidationMetadata from "./ValidationMetadata";
+import AbstractValidationFactory from './AbstractValidationFactory';
+import { Validation } from './Validation';
+import ValidationMetadata from './ValidationMetadata';
 
 const abstractFactory = new AbstractValidationFactory();
 
-export const validateWith = (metadata: ValidationMetadata) => (...params: any) => (
-  entity: any
-) => {
+export const validateWith = (metadata: ValidationMetadata) => (
+  ...params: any
+) => (entity: any) => {
   const validation: Validation<any, any> = abstractFactory
     .get(metadata.factory)
     .get(metadata.type);
@@ -15,10 +15,7 @@ export const validateWith = (metadata: ValidationMetadata) => (...params: any) =
   return entity;
 };
 
-
-export const validate = (metadata: ValidationMetadata) =>  (
-  entity: any
-) => {
+export const validate = (metadata: ValidationMetadata) => (entity: any) => {
   const validation: Validation<any, any> = abstractFactory
     .get(metadata.factory)
     .get(metadata.type);

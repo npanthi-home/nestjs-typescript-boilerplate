@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import NotFoundError from '../../../dist/core/common/error/types/NotFoundError';
-import User from '../../../dist/core/common/user/User';
-import UserEntityGateway from '../../../dist/core/common/user/UserEntityGateway';
-import { NullUser } from '../../core/common/user/User';
+import NotFoundError from 'src/core/common/error/types/NotFoundError';
+import UserEntityGateway from 'src/core/common/user/UserEntityGateway';
+import User, { NullUser } from '../../core/common/user/User';
 
 @Injectable()
 export default class InMemoryUserEntityGateway implements UserEntityGateway {
@@ -25,7 +24,7 @@ export default class InMemoryUserEntityGateway implements UserEntityGateway {
   async delete(username: string) {
     const user = await Promise.resolve(this.users.get(username) || NullUser);
     if (user === NullUser) {
-      throw new NotFoundError('user not found');
+      throw new NotFoundError ('user not found');
     } else {
       console.log('Deleted User', user);
       this.users.delete(username);

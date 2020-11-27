@@ -15,6 +15,7 @@ import { MongooseModule } from '@nestjs/mongoose';
       },
     ),
   ],
+  controllers: [],
   providers: [
     InMemoryUserEntityGateway,
     MongoProfileEntityGateway,

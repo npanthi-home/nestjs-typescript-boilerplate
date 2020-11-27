@@ -1,10 +1,10 @@
-import ValidationFactory from "../generic/ValidationFactory";
-import IsAdmin from "./IsAdmin";
-import ValidationMetadata from "../ValidationMetadata";
-import { create } from "../ValidationMetadata";
+import ValidationFactory from '../generic/ValidationFactory';
+import IsAdmin from './IsAdmin';
+import ValidationMetadata from '../ValidationMetadata';
+import { create } from '../ValidationMetadata';
 
 export default class UserValidationFactory extends ValidationFactory {
-  static factoryName = "User";
+  static factoryName = 'User';
   constructor() {
     super();
     this.validations.set(UserValidations.IsAdmin.type, new IsAdmin());
@@ -14,5 +14,5 @@ export default class UserValidationFactory extends ValidationFactory {
 const createMetadata = create(UserValidationFactory.factoryName);
 
 export class UserValidations {
-  static IsAdmin: ValidationMetadata = createMetadata("IsAdmin");
+  static IsAdmin: ValidationMetadata = createMetadata('IsAdmin');
 }
