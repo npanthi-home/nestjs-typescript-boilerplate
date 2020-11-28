@@ -3,6 +3,7 @@ import MongoProfileEntityGateway from './profile/MongoProfileEntityGateway';
 import InMemoryUserEntityGateway from './user/InMemoryUserEntityGateway';
 import ProfileDocumentMapper from './profile/ProfileDocumentMapper';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ProfileSchema, ProfileEntity } from './profile/ProfileSchema';
 
 @Module({
   imports: [
@@ -14,12 +15,15 @@ import { MongooseModule } from '@nestjs/mongoose';
         useUnifiedTopology: true,
       },
     ),
+    MongooseModule.forFeature([
+      { name: ProfileEntity.name, schema: ProfileSchema },
+    ]),
   ],
-  controllers: [],
   providers: [
     InMemoryUserEntityGateway,
     MongoProfileEntityGateway,
     ProfileDocumentMapper,
   ],
+  exports: [InMemoryUserEntityGateway, MongoProfileEntityGateway],
 })
 export class RepositoryModule {}

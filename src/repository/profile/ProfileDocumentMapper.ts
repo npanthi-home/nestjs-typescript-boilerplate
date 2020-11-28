@@ -9,7 +9,6 @@ import { ProfileDocument } from './ProfileDocument';
 @Injectable()
 export default class ProfileDocumentMapper
   implements Mapper<Profile, ProfileDocument> {
-
   constructor(
     @InjectModel(ProfileEntity.name) private model: Model<ProfileDocument>,
   ) {}

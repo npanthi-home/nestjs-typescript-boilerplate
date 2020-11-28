@@ -1,7 +1,7 @@
 export default interface Profile {
-    username: string,
+  username: string;
 }
 
 export const NullProfile = {
-    username: '',
-}
+  username: '',
+};
