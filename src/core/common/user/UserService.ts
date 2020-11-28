@@ -9,11 +9,12 @@ import Logger from '../Logger';
 import User from './User';
 import UserEntityGateway from './UserEntityGateway';
 
-export default class UserService implements CrudService<User, string> {
+export default class UserService extends CrudService<User, string> {
   gateway: UserEntityGateway;
   logger: Logger;
 
   constructor({ entityGateway: gateway, logger }) {
+    super({ entityGateway: gateway });
     this.gateway = gateway;
     this.logger = logger;
   }
@@ -26,18 +27,6 @@ export default class UserService implements CrudService<User, string> {
   )
   @AfterMethod((user: User) => console.log('AfterMethod', user))
   async create(user: User) {
-    return await this.gateway.create(user);
-  }
-
-  async get(username: string) {
-    return await this.gateway.get(username);
-  }
-
-  async delete(username: string) {
-    return await this.gateway.delete(username);
-  }
-
-  async update(user: User) {
-    return await this.gateway.update(user);
+    return await super.create(user);
   }
 }

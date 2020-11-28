@@ -1,13 +1,12 @@
 const BeforeMethod = (decoratorFunction: Function) => (
   target: Object,
   propertyKey: string,
-  descriptor: PropertyDescriptor
+  descriptor: PropertyDescriptor,
 ) => {
   if (descriptor.value) {
     const originalMethod = descriptor.value;
 
     descriptor.value = async function (...args: any[]) {
-      console.log("this");
       await decoratorFunction.apply(this, args);
       return await originalMethod.apply(this, args);
     };
