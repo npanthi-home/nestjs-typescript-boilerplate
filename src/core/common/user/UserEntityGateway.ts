@@ -1,8 +1,4 @@
 import User from './User';
+import CrudGateway from '../../base/CrudGateway';
 
-export default interface UserEntityGateway {
-  create: (user: User) => Promise<User>;
-  get: (username: string) => Promise<User>;
-  delete: (username: string) => Promise<User>;
-  update: (user: User) => Promise<User>;
-}
+export default interface UserEntityGateway extends CrudGateway<User, string> {}
