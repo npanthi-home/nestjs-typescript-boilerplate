@@ -11,7 +11,7 @@ import ProfileEntity from './ProfileEntity';
 export default class MongoProfileEntityGateway implements ProfileEntityGateway {
   constructor(
     @InjectModel(ProfileEntity.name) private model: Model<ProfileDocument>,
-    @Inject() private mapper: ProfileDocumentMapper,
+    @Inject(ProfileDocumentMapper.name) private mapper: ProfileDocumentMapper,
   ) {}
 
   async save(profile: Profile) {

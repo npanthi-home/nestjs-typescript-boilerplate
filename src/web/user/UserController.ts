@@ -27,7 +27,7 @@ export class UserController {
 
   constructor(
     @Inject('Core') core: Context,
-    @Inject() private mapper: UserWebDtoMapper,
+    @Inject(UserWebDtoMapper.name) private mapper: UserWebDtoMapper,
   ) {
     this.service = core.user.userService;
     this.countOneToHundredAsGuest = core.useCase.countOneToHundredAsGuest;
