@@ -1,20 +1,18 @@
 import { Module } from '@nestjs/common';
-import MongoProfileEntityGateway from './profile/MongoProfileEntityGateway';
-import InMemoryUserEntityGateway from './user/InMemoryUserEntityGateway';
-import ProfileDocumentMapper from './profile/ProfileDocumentMapper';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ProfileSchema, ProfileEntity } from './profile/ProfileSchema';
+import MongoProfileEntityGateway from './profile/MongoProfileEntityGateway';
+import ProfileDocumentMapper from './profile/ProfileDocumentMapper';
+import ProfileEntity from './profile/ProfileEntity';
+import ProfileSchema from './profile/ProfileSchema';
+import InMemoryUserEntityGateway from './user/InMemoryUserEntityGateway';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb+srv://root:CXthbK8X6jVRZzR@cluster0.vmlss.mongodb.net/nodets?retryWrites=true&w=majority',
-      {
-        useCreateIndex: true,
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      },
-    ),
+    MongooseModule.forRoot('mongodb://npanthi:secret@localhost:27017/test', {
+      useCreateIndex: true,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }),
     MongooseModule.forFeature([
       { name: ProfileEntity.name, schema: ProfileSchema },
     ]),

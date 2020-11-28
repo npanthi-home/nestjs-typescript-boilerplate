@@ -4,17 +4,16 @@ import {
   Delete,
   Get,
   Inject,
+
   Param,
   Post,
-  Put,
+  Put
 } from '@nestjs/common';
 import { StatusCodes as Codes } from 'http-status-codes';
 import NotFoundError from '../../core/common/error/types/NotFoundError';
 import UnauthorizedError from '../../core/common/error/types/UnauthorizedError';
-import User from '../../core/common/user/User';
 import UserService from '../../core/common/user/UserService';
 import Context from '../../core/context/Context';
-import Mapper from '../../core/interface/Mapper';
 import CountOneToHundredAsGuest from '../../core/usecase/CountOneToHundredAsGuest';
 import { compose } from '../../core/utils/compose';
 import { buildError } from '../response/builder';
@@ -24,16 +23,14 @@ import UserWebDtoMapper from './UserWebDtoMapper';
 @Controller('/user')
 export class UserController {
   service: UserService;
-  mapper: Mapper<User, UserWebDto>;
   countOneToHundredAsGuest: CountOneToHundredAsGuest;
 
   constructor(
     @Inject('Core') core: Context,
-    @Inject() mapper: UserWebDtoMapper,
+    @Inject() private mapper: UserWebDtoMapper,
   ) {
     this.service = core.user.userService;
     this.countOneToHundredAsGuest = core.useCase.countOneToHundredAsGuest;
-    this.mapper = mapper;
   }
 
   @Get('/countrequest')

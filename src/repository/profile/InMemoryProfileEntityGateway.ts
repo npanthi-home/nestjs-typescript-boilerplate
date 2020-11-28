@@ -1,7 +1,7 @@
-import { Injectable } from "@nestjs/common";
-import ProfileEntityGateway from "../../core/common/profile/ProfileEntityGateway";
-import Profile from "../../core/common/profile/Profile";
-import { NullProfile } from "../../core/common/profile/Profile";
+import { Injectable } from '@nestjs/common';
+import ProfileEntityGateway from '../../core/common/profile/ProfileEntityGateway';
+import Profile from '../../core/common/profile/Profile';
+import { NullProfile } from '../../core/common/profile/Profile';
 
 @Injectable()
 export default class InMemoryProfileEntityGateway

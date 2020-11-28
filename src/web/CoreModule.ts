@@ -7,5 +7,6 @@ import NextJsContext from './NestJsContext';
   imports: [RepositoryModule],
   controllers: [],
   providers: [NextJsContext, ConsoleLogger],
+  exports: [NextJsContext],
 })
 export class CoreModule {}

@@ -1,9 +1,6 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { SchemaFactory } from '@nestjs/mongoose';
+import ProfileEntity from './ProfileEntity';
 
-@Schema()
-export class ProfileEntity {
-  @Prop({ required: true })
-  username: string;
-}
+const ProfileSchema = SchemaFactory.createForClass(ProfileEntity);
 
-export const ProfileSchema = SchemaFactory.createForClass(ProfileEntity);
+export default ProfileSchema;

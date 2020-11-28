@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import Mapper from '../../core/interface/Mapper';
 import Profile from '../../core/common/profile/Profile';
-import { ProfileEntity } from './ProfileSchema';
+import Mapper from '../../core/interface/Mapper';
 import { ProfileDocument } from './ProfileDocument';
+import ProfileEntity from './ProfileEntity';
 
 @Injectable()
 export default class ProfileDocumentMapper
