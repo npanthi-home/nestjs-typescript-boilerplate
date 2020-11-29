@@ -1,5 +1,5 @@
+import UserValidationFactory from '../common/user/validation/UserValidationFactory';
 import ValidationFactory from './generic/ValidationFactory';
-import UserValidationFactory from './user/UserValidationFactory';
 
 class FactoryNames {
   static Generic = ValidationFactory.factoryName;

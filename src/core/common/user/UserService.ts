@@ -1,7 +1,7 @@
+import { UserValidations } from './validation/UserValidationFactory';
 import CrudService from '../../base/CrudService';
 import { compose } from '../../utils/compose';
 import { GenericValidations } from '../../validation/generic/ValidationFactory';
-import { UserValidations } from '../../validation/user/UserValidationFactory';
 import { validate, validateWith } from '../../validation/validate';
 import AfterMethod from '../decorators/method/AfterMethod';
 import BeforeMethod from '../decorators/method/BeforeMethod';

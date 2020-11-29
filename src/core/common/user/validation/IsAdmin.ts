@@ -1,6 +1,6 @@
 import User from 'src/core/common/user/User';
-import UnauthorizedError from '../../common/error/types/UnauthorizedError';
-import { Validation } from '../Validation';
+import UnauthorizedError from '../../error/types/UnauthorizedError';
+import { Validation } from '../../../validation/Validation';
 
 export interface IsAdminRequest {
   user: User;

@@ -1,7 +1,8 @@
-import ValidationFactory from '../generic/ValidationFactory';
 import IsAdmin from './IsAdmin';
-import ValidationMetadata from '../ValidationMetadata';
-import { create } from '../ValidationMetadata';
+import ValidationFactory from 'src/core/validation/generic/ValidationFactory';
+import ValidationMetadata, {
+  create,
+} from 'src/core/validation/ValidationMetadata';
 
 export default class UserValidationFactory extends ValidationFactory {
   static factoryName = 'User';
