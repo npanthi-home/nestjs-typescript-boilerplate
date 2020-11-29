@@ -40,8 +40,8 @@ export class UserController {
 
   @Get('/:username')
   async get(@Param('username') username: string) {
-    const user = await this.service.findOne('username', username);
-    return await this.mapper.to(user);
+    const users = await this.service.find('username', username);
+    return await this.mapper.toArray(users);
   }
 
   @Post()
@@ -76,7 +76,6 @@ export class UserController {
 
   @Delete('/:username')
   async delete(@Param('username') username) {
-    const user = await this.service.deleteOne('username', username);
-    return await this.mapper.to(user);
+    return await this.service.delete('username', username);
   }
 }

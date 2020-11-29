@@ -20,16 +20,10 @@ export default class MongoCrudEntityGateway<M, D extends Document>
     return this.mapper.fromArray(savedDocuments);
   }
 
-  async findAll(key: string, value: any) {
+  async find(key: string, value: any) {
     const query: any = { [key]: value };
     const documents = await this.model.find(query);
     return this.mapper.fromArray(documents);
-  }
-
-  async findOne(key: string, value: any) {
-    const query: any = { [key]: value };
-    const documents = await this.model.find(query);
-    return await this.mapper.from(documents[0]);
   }
 
   async exists(key: string, value: any) {
@@ -48,15 +42,9 @@ export default class MongoCrudEntityGateway<M, D extends Document>
     return await this.mapper.from(savedDocument);
   }
 
-  async deleteAll(key: string, value: any) {
+  async delete(key: string, value: any) {
     const query: any = { [key]: value };
     const result = await this.model.deleteMany(query);
     return result.deletedCount;
-  }
-
-  async deleteOne(key: string, value: any) {
-    const query: any = { [key]: value };
-    const documents = await this.model.deleteOne(query);
-    return await this.mapper.from(documents[0]);
   }
 }

@@ -15,12 +15,8 @@ export default abstract class CrudService<M> implements CrudOperations<M> {
     return this.gateway.saveAll(models);
   }
 
-  async findAll(key: string, value: any) {
-    return this.gateway.findAll(key, value);
-  }
-
-  async findOne(key: string, value: any) {
-    return this.gateway.findOne(key, value);
+  async find(key: string, value: any) {
+    return this.gateway.find(key, value);
   }
 
   async exists(key: string, value: any) {
@@ -35,11 +31,7 @@ export default abstract class CrudService<M> implements CrudOperations<M> {
     return this.gateway.replace(key, value, model);
   }
 
-  async deleteAll(key: string, value: any) {
-    return this.gateway.deleteAll(key, value);
-  }
-
-  async deleteOne(key: string, value: any) {
-    return this.gateway.deleteOne(key, value);
+  async delete(key: string, value: any) {
+    return this.gateway.delete(key, value);
   }
 }

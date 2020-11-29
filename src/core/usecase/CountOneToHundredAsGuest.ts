@@ -21,6 +21,6 @@ export default class CountOneToHundredAsGuest implements Runnable {
     for (let i = 1; i <= 100; i++) {
       console.log(`${temp.username} counts ${i}`);
     }
-    this.userService.deleteOne('username', temp.username);
+    this.userService.delete('username', temp.username);
   }
 }
