@@ -4,7 +4,7 @@ import User from '../../core/common/user/User';
 import UserWebDto from './UserWebDto';
 
 @Injectable()
-export default class UserWebDtoMapper implements Mapper<User, UserWebDto> {
+export default class UserWebDtoMapper extends Mapper<User, UserWebDto> {
   async to(model: User) {
     const { username, email, firstName, lastName } = model;
     return {

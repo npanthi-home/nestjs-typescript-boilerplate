@@ -9,7 +9,7 @@ import Logger from '../Logger';
 import User from './User';
 import UserEntityGateway from './UserEntityGateway';
 
-export default class UserService extends CrudService<User, string> {
+export default class UserService extends CrudService<User> {
   gateway: UserEntityGateway;
   logger: Logger;
 
@@ -26,7 +26,7 @@ export default class UserService extends CrudService<User, string> {
     )(user),
   )
   @AfterMethod((user: User) => console.log('AfterMethod', user))
-  async create(user: User) {
-    return await super.create(user);
+  async save(user: User) {
+    return await super.save(user);
   }
 }

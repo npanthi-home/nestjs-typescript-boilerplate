@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import MongoProfileEntityGateway from './profile/MongoProfileEntityGateway';
-import ProfileDocumentMapper from './profile/ProfileDocumentMapper';
-import ProfileEntity from './profile/ProfileEntity';
-import ProfileSchema from './profile/ProfileSchema';
-import InMemoryUserEntityGateway from './user/InMemoryUserEntityGateway';
+import MongoUserEntityGateway from './user/MongoUserEntityGateway';
+import UserDocumentMapper from './user/UserDocumentMapper';
+import UserEntity from './user/UserEntity';
+import UserSchema from './user/UserSchema';
 
 @Module({
   imports: [
@@ -13,15 +12,9 @@ import InMemoryUserEntityGateway from './user/InMemoryUserEntityGateway';
       useNewUrlParser: true,
       useUnifiedTopology: true,
     }),
-    MongooseModule.forFeature([
-      { name: ProfileEntity.name, schema: ProfileSchema },
-    ]),
+    MongooseModule.forFeature([{ name: UserEntity.name, schema: UserSchema }]),
   ],
-  providers: [
-    InMemoryUserEntityGateway,
-    MongoProfileEntityGateway,
-    ProfileDocumentMapper,
-  ],
-  exports: [InMemoryUserEntityGateway, MongoProfileEntityGateway],
+  providers: [MongoUserEntityGateway, UserDocumentMapper],
+  exports: [MongoUserEntityGateway],
 })
 export class RepositoryModule {}

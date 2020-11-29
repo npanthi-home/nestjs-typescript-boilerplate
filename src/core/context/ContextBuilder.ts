@@ -1,22 +1,15 @@
-import UserContext from '../common/user/UserContext';
 import BaseContext from '../base/BaseContext';
-import ProfileContext from '../common/profile/ProfileContext';
-import Context from './Context';
+import UserContext from '../common/user/UserContext';
 import UseCaseContext from '../usecase/UseCaseContext';
+import Context from './Context';
 
 export default class ContextBuilder {
-  profile: ProfileContext;
   user: UserContext;
   base: BaseContext;
   useCase: UseCaseContext;
 
   setUserContext(context: UserContext) {
     this.user = context;
-    return this;
-  }
-
-  setProfileContext(context: ProfileContext) {
-    this.profile = context;
     return this;
   }
 
@@ -34,7 +27,6 @@ export default class ContextBuilder {
     return new Context({
       base: this.base,
       user: this.user,
-      profile: this.profile,
       useCase: this.useCase,
     });
   }

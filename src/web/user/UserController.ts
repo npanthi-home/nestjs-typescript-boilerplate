@@ -4,10 +4,9 @@ import {
   Delete,
   Get,
   Inject,
-
   Param,
   Post,
-  Put
+  Put,
 } from '@nestjs/common';
 import { StatusCodes as Codes } from 'http-status-codes';
 import NotFoundError from '../../core/common/error/types/NotFoundError';
@@ -41,7 +40,7 @@ export class UserController {
 
   @Get('/:username')
   async get(@Param('username') username: string) {
-    const user = await this.service.get(username);
+    const user = await this.service.findOne('username', username);
     return await this.mapper.to(user);
   }
 
@@ -61,19 +60,23 @@ export class UserController {
 
   private async unsafeCreate(userDto: UserWebDto) {
     const user = await this.mapper.from(userDto);
-    const savedUser = await this.service.create(user);
+    const savedUser = await this.service.save(user);
     return await this.mapper.to(savedUser);
   }
 
   @Put()
   async update(@Body() user: UserWebDto) {
-    const updatedUser = await this.service.update(await this.mapper.from(user));
+    const updatedUser = await this.service.replace(
+      'username',
+      user.username,
+      await this.mapper.from(user),
+    );
     return await this.mapper.to(updatedUser);
   }
 
   @Delete('/:username')
   async delete(@Param('username') username) {
-    const user = await this.service.delete(username);
+    const user = await this.service.deleteOne('username', username);
     return await this.mapper.to(user);
   }
 }
