@@ -19,12 +19,13 @@ export default {
       { entityGateway: userEntityGateway },
       baseContext,
     );
+    const fruitContext: FruitContext = new FruitContext({
+      entityGateway: fruitEntityGateway,
+    });
     const useCaseContext: UseCaseContext = new UseCaseContext({
       base: baseContext,
       user: userContext,
-    });
-    const fruitContext: FruitContext = new FruitContext({
-      entityGateway: fruitEntityGateway,
+      fruit: fruitContext,
     });
 
     return new ContextBuilder()

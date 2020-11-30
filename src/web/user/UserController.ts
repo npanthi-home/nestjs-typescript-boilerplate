@@ -9,6 +9,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { StatusCodes as Codes } from 'http-status-codes';
+import LetUserHaveFruit from 'src/core/usecase/LetUserHaveFruit';
 import NotFoundError from '../../core/common/error/types/NotFoundError';
 import UnauthorizedError from '../../core/common/error/types/UnauthorizedError';
 import UserService from '../../core/common/user/UserService';
@@ -23,6 +24,7 @@ import UserWebDtoMapper from './UserWebDtoMapper';
 export class UserController {
   service: UserService;
   countOneToHundredAsGuest: CountOneToHundredAsGuest;
+  letUserHaveFruit: LetUserHaveFruit;
 
   constructor(
     @Inject('Core') core: Context,
@@ -30,12 +32,24 @@ export class UserController {
   ) {
     this.service = core.user.userService;
     this.countOneToHundredAsGuest = core.useCase.countOneToHundredAsGuest;
+    this.letUserHaveFruit = core.useCase.letUserHaveFruit;
   }
 
   @Get('/countrequest')
   async count() {
     await this.countOneToHundredAsGuest.run();
     return 'done';
+  }
+
+  @Get('/haveFruit/user/:username/fruit/:fruitName')
+  async haveFruit(
+    @Param('username') username: string,
+    @Param('fruitName') fruitName: string,
+  ) {
+    return this.letUserHaveFruit.consume({
+      username,
+      fruitName,
+    });
   }
 
   @Get('/:username')
